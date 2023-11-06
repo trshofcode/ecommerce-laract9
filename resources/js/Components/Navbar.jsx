@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 
 const Navbar = ({ user }) => {
     return (
@@ -44,9 +44,9 @@ const Navbar = ({ user }) => {
                         </li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">TRSHOFTEE</a>
+                <Link href={route('homepage')} as="button" className="btn btn-ghost normal-case text-xl">TRSHOFTEE</Link>
             </div>
-            <div className="navbar-center hidden lg:flex">
+            <div className="navbar-center lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li>
                         <a>NEW ARRIVAL</a>
@@ -96,9 +96,7 @@ const Navbar = ({ user }) => {
                         tabIndex={0}
                         className="mt-3 z-[1] card card-compact dropdown-content h-56 bg-base-300 shadow"
                     >                      
-                        <div className="card-body w-96">
-                            {/* <span className="font-bold text-lg">8 Items</span>
-          <span className="text-info">Subtotal: $999</span> */}
+                        <div className="card-body w-96">                            
                             <div className="flex flex-col divide-y divide-gray-200">
                                 <div className="flex items-center py-2 px-2">
                                     <img

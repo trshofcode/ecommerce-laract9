@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { Head } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
 import ProductList from "@/Components/Homepage/ProductList";
-import Paginator from "@/Components/Homepage/Paginator";
 import Carousel from "@/Components/Homepage/Carousel";
 
 export default function Homepage(props) {     
-          
+              
     return (
         <div className="min-h-screen">
             <Head title={props.title} />

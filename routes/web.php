@@ -18,11 +18,11 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [ProductController::class, 'index']);
-Route::post('/addCart', [CartController::class, 'store'])->middleware(['auth', 'verified'])->name('Cartpage');
-Route::get('/cart', [CartController::class, 'show'])->middleware(['auth', 'verified'])->name('Cartpage');
-Route::post('/item/delete', [CartController::class, 'destroy'])->middleware(['auth', 'verified'])->name('Cartpage')->name('delete.item');
-
+Route::get('/', [ProductController::class, 'index'])->name('homepage');
+Route::post('/addCart', [CartController::class, 'store'])->middleware(['auth', 'verified'])->name('add.cart');
+Route::get('/cart', [CartController::class, 'show'])->middleware(['auth', 'verified'])->name('get.cart');
+Route::post('/item/delete/', [CartController::class, 'destroy'])->middleware(['auth', 'verified'])->name('delete.item');
+Route::get('/product/detail/', [ProductController::class, 'detail'])->name('detail.product');
 
 // Route::get('/welcome', function () {
 //     return Inertia::render('Welcome', [

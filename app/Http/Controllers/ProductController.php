@@ -18,7 +18,7 @@ class ProductController extends Controller
     {    
         $products = new ProductCollection(Product::OrderbyDesc('id')->paginate(8));         
        return Inertia::render('Homepage', [
-            'title' => 'TRSHOFTEE',
+            'title' => 'BERANDA',
             'description' => 'OFFICIAL STORE TRSHOFTEE',
             'product' => $products,            
         ]);            
@@ -72,27 +72,10 @@ class ProductController extends Controller
         //
     }
 
-    public function addToCart($id)
-    {
-        $product = Product::findOrFail($id);
+    public function detail (Request $request, Product $product){            
+        return Inertia::render('DetailProduct', [          
+            'product' => $product->find($request->id),             
+        ]);            
 
-        $cart = session()->get('cart', []);
-        return Inertia::render('Homepage',[
-            'carts' => $cart
-        ]);
-
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else{
-            $cart [$id] = [
-                'title' => $product->title,                
-                'price' => $product->price,                
-                'pict' => $product->pict,                
-                'quantity' => 1            
-            ];
-        }
-
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
-    }
+    }    
 }

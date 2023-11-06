@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -35,11 +36,10 @@ class CartController extends Controller
     {
         $carts = new Cart();
         $carts->product_id = $request->product_id;
-        $carts->user = auth()->user()->email;
-        $carts->title = $request->title;
-        $carts->price = $request->price;
-        $carts->pict = $request->pict;
-        $carts->quantity = 1;
+        $carts->user_id = auth()->user()->id;
+        $carts->qty = $request->qty;
+        $carts->size = $request->size;
+        $carts->color = $request->color;        
         $carts->save();
 
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
@@ -50,10 +50,14 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-        $myCart = $cart::where('user', auth()->user()->email)->get();
+        $myCart = DB::table('carts')
+        ->join('products', 'products.id', '=', 'carts.product_id')     
+        ->join('users', 'users.id', '=', 'carts.user_id')           
+        ->get();
+        $cart::where('user_id', auth()->user()->id)->get();        
         return Inertia::render('CartPage', [ 
             'title' => 'KERANJANG',           
-            'myCart' => $myCart,    
+            'myCart' => $myCart,               
         ]);
     }
 
@@ -76,7 +80,7 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, Cart $cart)
     {
         $cart = Cart::find($request->id);
 
