@@ -22,6 +22,7 @@ class ProductController extends Controller
             'description' => 'OFFICIAL STORE TRSHOFTEE',
             'product' => $products,            
         ]);            
+        return redirect()->back()->with('message', 'Produk berhasil ditambahkan ke keranjang');
     }
 
     /**

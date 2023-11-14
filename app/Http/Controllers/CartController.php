@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Address;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
@@ -14,10 +15,10 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = Cart::all();
+        $cart = Cart::all();    
         return Inertia::render('CartPage', [
             'title' => 'KERANJANG',
-            'cart' => $cart,    
+            'cart' => $cart,                
         ]);
     }
 
@@ -42,22 +43,27 @@ class CartController extends Controller
         $carts->color = $request->color;        
         $carts->save();
 
-        return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
+        return redirect()->back()->with('message', 'Produk berhasil ditambahkan ke keranjang');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Cart $cart)
+    public function show(Request $request, Cart $cart)
     {
-        $myCart = DB::table('carts')
+        $alamats = Address::where('addresses.user_id', '=', auth()->user()->id)->get();
+        $myCart = 
+        DB::table('carts')        
+        ->where('carts.user_id', '=', auth()->user()->id)           
         ->join('products', 'products.id', '=', 'carts.product_id')     
-        ->join('users', 'users.id', '=', 'carts.user_id')           
+        ->join('users', 'users.id', '=', 'carts.user_id') 
+        ->select('carts.*', 'products.title','products.pict', 'products.price', 'users.name')
         ->get();
-        $cart::where('user_id', auth()->user()->id)->get();        
+        // $cart::where('user_id', auth()->user()->id)->get();        
         return Inertia::render('CartPage', [ 
             'title' => 'KERANJANG',           
-            'myCart' => $myCart,               
+            'myCart' => $myCart,  
+            'alamat' => $alamats,             
         ]);
     }
 
@@ -87,5 +93,19 @@ class CartController extends Controller
         $cart->delete();
         
         return redirect()->back()->with('message', 'Produk berhasil dihapus');        
+    }
+
+    public function addAlamat(Request $request){
+        $addrs = new Address();        
+        $addrs->user_id = auth()->user()->id;
+        $addrs->prov = $request->prov;
+        $addrs->kabupaten = $request->kab;
+        $addrs->kecamatan = $request->kec;
+        $addrs->desa = $request->desa;        
+        $addrs->ket = $request->ket;        
+        $addrs->kd_pos = $request->postzip;        
+        $addrs->save();
+
+        return redirect()->back()->with('message', 'Alamat berhasil ditambahkan');
     }
 }

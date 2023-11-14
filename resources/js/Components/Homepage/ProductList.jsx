@@ -4,8 +4,8 @@ const isProduct = (products) => {
 
     return products.map((data, i) => {
         return (        
-            <Link href={route('detail.product')} data={{ id: data.id }} method="get" as="button"  className="card w-full lg:w-96 bg-neutral shadow-xl">
-            <div key={i}>
+            <Link key={i} href={route('detail.product')} data={{ id: data.id }} method="get" as="button"  className="card w-full lg:w-96 bg-neutral shadow-xl">
+            <div >
                 <figure>
                     <img src={data.pict} alt="product" />
                 </figure>

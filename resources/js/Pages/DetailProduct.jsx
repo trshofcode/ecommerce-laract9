@@ -1,10 +1,10 @@
 import ButtonBack from "@/Components/ButtonBack";
 import Navbar from "@/Components/Navbar";
 import { Inertia } from "@inertiajs/inertia";
-import { Head, Link, router } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
-export default function DetailProduct (props) {   
+export default function DetailProduct (props) {      
 
     const [size, setSize] = useState('');
     const [color, setColor] = useState('');
@@ -35,7 +35,7 @@ export default function DetailProduct (props) {
             product_id: props.product.id, size, color, qty
         }
         Inertia.post('/addCart', data);
-    }    
+    }        
 
     return (        
         <div className="h-screen w-full">

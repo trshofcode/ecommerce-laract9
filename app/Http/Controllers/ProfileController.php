@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Address;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
 
 class ProfileController extends Controller
 {
@@ -17,10 +22,14 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
     public function edit(Request $request): Response
-    {
-        return Inertia::render('Profile/Edit', [
+    {            
+        return Inertia::render('Profile/Edit', [            
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
+            'provinsi' => $provinces = Province::all(),                        
+            'kota' => $regencies = Regency::all(),                                 
+            'kecamatan' => $district = District::all(),                        
+            'desa' => $village = Village::all(),                        
         ]);
     }
 
@@ -59,5 +68,5 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
-    }
+    }   
 }

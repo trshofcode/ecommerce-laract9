@@ -187,12 +187,11 @@ const Navbar = ({ user }) => {
                             <>
                                 <li>
                                     <Link
-                                        href={route("dashboard")}
+                                        href={route("profile.edit")}
                                         as="button"
                                         className="justify-between"
                                     >
-                                        Profile
-                                        <span className="badge">New</span>
+                                        Profile                                        
                                     </Link>
                                 </li>
                                 <li>
