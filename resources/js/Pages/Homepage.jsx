@@ -4,14 +4,14 @@ import Navbar from "@/Components/Navbar";
 import ProductList from "@/Components/Homepage/ProductList";
 import Carousel from "@/Components/Homepage/Carousel";
 
-export default function Homepage(props) {     
+export default function Homepage(props) {         
               
     return (
         <div className="min-h-screen">
             <Head title={props.title} />
-            <Navbar user={props.auth.user} />
+            <Navbar user={props.auth.user} carts={props.cart.length} />
             <Carousel />
-            <h1 className="p-4 items-center"> PRODUK TERBARU</h1>
+            <h1 className="px-12 py-4 items-center text-xl font-semibold"> Produk Terbaru</h1>
             <div className="flex justify-center flex-col lg:flex-row lg:flex-wrap lg:items-stretch items-center gap-4 p-4">            
                 <ProductList products={props.product.data}/>
             </div>

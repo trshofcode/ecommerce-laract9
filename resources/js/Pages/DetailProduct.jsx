@@ -39,10 +39,14 @@ export default function DetailProduct (props) {
 
     return (        
         <div className="h-screen w-full">
-            <Head title={props.product.title}/>
-            <Navbar/>
+            <Head title={props.product.title}/>            
         <div className="p-2">
-            <ButtonBack />
+            <div className='flex'>
+                <div>
+                    <ButtonBack />
+                </div>
+                <h1 className="text-2xl font-semibold mt-2">Detail Product</h1>
+            </div>            
             <div className="flex flex-col lg:flex-row justify-center mt-[-15px] gap-12 p-12">
                 <div>
                     <img src={props.product.pict} width={400} height={400}/>

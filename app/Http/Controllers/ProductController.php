@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ProductCollection;
 use App\Http\Controllers\CartController;
 use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -16,11 +17,13 @@ class ProductController extends Controller
      */
     public function index()
     {    
-        $products = new ProductCollection(Product::OrderbyDesc('id')->paginate(8));         
+        $products = new ProductCollection(Product::OrderbyDesc('id')->paginate(8)); 
+        $cart = Cart::all();        
        return Inertia::render('Homepage', [
             'title' => 'BERANDA',
             'description' => 'OFFICIAL STORE TRSHOFTEE',
-            'product' => $products,            
+            'product' => $products,  
+            'cart' => $cart          
         ]);            
         return redirect()->back()->with('message', 'Produk berhasil ditambahkan ke keranjang');
     }
@@ -73,9 +76,11 @@ class ProductController extends Controller
         //
     }
 
-    public function detail (Request $request, Product $product){            
+    public function detail (Request $request, Product $product){ 
+        $cart = Cart::all();           
         return Inertia::render('DetailProduct', [          
-            'product' => $product->find($request->id),             
+            'product' => $product->find($request->id),         
+            'cart' => $cart    
         ]);            
 
     }    

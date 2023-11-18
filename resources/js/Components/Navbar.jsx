@@ -1,6 +1,7 @@
 import { Link, router } from "@inertiajs/react";
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user, carts }) => {
+    console.log(carts)
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -69,9 +70,9 @@ const Navbar = ({ user }) => {
                     </li>
                 </ul>
             </div>
-            <div className="navbar-end">
-                <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle">
+            <div className="navbar-end">                                           
+                <label tabIndex={0} className="btn btn-ghost btn-circle">
+                    <Link href='/cart'>
                         <div className="indicator">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -79,84 +80,18 @@ const Navbar = ({ user }) => {
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                                />
-                            </svg>
-                            <span className="badge badge-sm indicator-item">
-                                2
-                            </span>
-                        </div>
-                    </label>
-                    <div
-                        tabIndex={0}
-                        className="mt-3 z-[1] card card-compact dropdown-content h-56 bg-base-300 shadow"
-                    >                      
-                        <div className="card-body w-96">                            
-                            <div className="flex flex-col divide-y divide-gray-200">
-                                <div className="flex items-center py-2 px-2">
-                                    <img
-                                        className="w-16 h-16 object-cover rounded"
-                                        src="https://dummyimage.com/100x100/F3F4F7/000000.jpg"
-                                        alt="Product Image"
-                                    />
-                                    <div className="ml-3">
-                                        <h3 className="text-white-100 font-semibold">
-                                            Product Name asdasdas
-                                        </h3>
-                                        <p className="text-gray-700 mt-1">$9.99</p>
-                                        <p className="text-gray-700 mt-1">
-                                            Qty : 1
-                                        </p>
-                                    </div>
-                                    <label
-                                        tabIndex={0}
-                                        className="btn btn-ghost btn-circle ml-auto py-2 px-4"
-                                    >
-                                        <div className="indicator">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth={1.5}
-                                                stroke="currentColor"
-                                                className="w-6 h-6"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                                                />
-                                            </svg>
-                                        </div>
-                                    </label>
-
-                                    {/* <button class="ml-auto py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg">
-                                            Remove
-                                        </button> */}
-                                </div>
-                            </div>
-                            <div className="flex">
-                                <p>TOTAL :</p>
-                                <div className="justify-items-end">
-                                    <p>Rp. 8020912</p>
-                                </div>
-                             </div>
-                            <div className="card-actions">
-                                <Link href='/cart'
-                                    as="button"
-                                    className="btn btn-primary btn-block"
                                 >
-                                    View cart
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            <path
+                                strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                                    />
+                            </svg>                            
+                            <span className="badge badge-sm indicator-item">{carts}</span>
+                        </div>                        
+                    </Link>     
+                </label>                                                      
                 <div className="dropdown dropdown-end">
                     <label
                         tabIndex={0}

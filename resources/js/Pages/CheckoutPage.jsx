@@ -5,7 +5,7 @@ export default function CheckoutPage(props) {
 
     useEffect(() => {
         const snapSrcUrl = 'https://app.sandbox.midtrans.com/snap/snap.js';
-        const myMidtransClientKey = 'SB-Mid-client-0z27VHEHQsQXM8VX';
+        const myMidtransClientKey = 'your client key';
       
         const script = document.createElement('script');
         script.src = snapSrcUrl;
