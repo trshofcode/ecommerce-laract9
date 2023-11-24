@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Head, Link, usePage } from '@inertiajs/react';
 import ButtonBack from '@/Components/ButtonBack';
 import AddressForm from '@/Components/Cartpage/AddressForm';
-import { Inertia } from '@inertiajs/inertia';
 
 export default function CartPage (props) {     
     

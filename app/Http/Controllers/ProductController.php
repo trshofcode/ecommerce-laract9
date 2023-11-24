@@ -15,15 +15,16 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {    
         $products = new ProductCollection(Product::OrderbyDesc('id')->paginate(8)); 
-        $cart = Cart::all();        
+        $cart = Cart::all();
+        // $cart = Cart::all();
        return Inertia::render('Homepage', [
             'title' => 'BERANDA',
             'description' => 'OFFICIAL STORE TRSHOFTEE',
             'product' => $products,  
-            'cart' => $cart          
+            'cart' => $cart     
         ]);            
         return redirect()->back()->with('message', 'Produk berhasil ditambahkan ke keranjang');
     }
@@ -79,8 +80,7 @@ class ProductController extends Controller
     public function detail (Request $request, Product $product){ 
         $cart = Cart::all();           
         return Inertia::render('DetailProduct', [          
-            'product' => $product->find($request->id),         
-            'cart' => $cart    
+            'product' => $product->find($request->id),                     
         ]);            
 
     }    

@@ -1,9 +1,7 @@
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import { Inertia } from '@inertiajs/inertia';
-import { router } from '@inertiajs/react';
 import { useState } from 'react';
-import InputError from '../InputError';
 
 export default function AddressForm() {    
     
@@ -18,8 +16,7 @@ export default function AddressForm() {
         const data = {
             prov, kab, kec, desa, ket, postzip
         }
-        Inertia.post('/cart/alamat', data)
-        console.log(data)
+        Inertia.post('/cart/alamat', data)        
     }      
             
     return(

@@ -20,6 +20,6 @@ class AddressController extends Controller
         $addrs->kd_pos = $request->postzip;        
         $addrs->save();        
 
-        return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang');
+        return redirect()->back()->with('message', 'Berhasil menambahkan alamat');
     }
 }

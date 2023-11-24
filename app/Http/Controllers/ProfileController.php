@@ -25,11 +25,7 @@ class ProfileController extends Controller
     {            
         return Inertia::render('Profile/Edit', [            
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
-            'provinsi' => $provinces = Province::all(),                        
-            'kota' => $regencies = Regency::all(),                                 
-            'kecamatan' => $district = District::all(),                        
-            'desa' => $village = Village::all(),                        
+            'status' => session('status'),                             
         ]);
     }
 
